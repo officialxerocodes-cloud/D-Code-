@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D'Code</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <span ><i class="fa-solid fa-money-check-dollar"></i>Finance Tracker</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home"><i class="fa-regular fa-house"></i>Home</a></li>
+                <li><a href="#dashboard"><i class="fa-solid fa-credit-card"></i>Dashboard</a></li>
+                <li><a href="#transactions1"><i class="fa-solid fa-chart-line"></i>Transactions</a></li>
+                
+            </ul>
+            <div class="nav-actions">
+                <div class="auth-buttons">
+                    <button class="login-btn">Login</button>
+                    <button class="sign-btn" onclick="location.reload()">Reset</button>
+                </div>
+            </div>
+
+        </nav>
+        
+    </header>
+    <!-- <i class="fa-solid fa-hand-holding-dollar"></i> -->
+    
+    <!-- <section id="home"> -->
+    <div class="home-text" id="home">
+        <h3><span>Finance Tracker</span></h3><p class="tagline">Your Finances. Under Control.</p><div class="home-text-p"><p>Our website lets users log income and expenses, then visualize them through interactive charts.<br>It’s a simple, intuitive tool to track and manage your finances effectively.</p></div>
+    </div>
+    <!-- </section> -->
+    
+    <section id="dashboard" class="dashboard-class">
+        <div class="col">
+            <div class="card">
+                <p class="card-heading"><i class="fa-solid fa-arrow-up-wide-short"></i>Total income: <span id="totalIncome"></span></p>
+            </div>
+            <div class="card">
+                <p class="card-heading"><i class="fa-solid fa-arrow-down-wide-short"></i>Total Expenses: <span id="totalExpense"></span></p>
+            </div>
+            <div class="card">
+                <p class="card-heading"><i class="fa-solid fa-scale-balanced"></i>Total Balance: <span id="totalBalance"></span></p>
+            </div>
+        </div>
+    </section>
+    <section id="transactions2" >
+        <div class="transactions-class">
+            <div class="common">
+                <p class="side2">🔥Most Expensive category: <span id="mostExpensive">Add Expense First</span></p>
+                <p class="side2">🛍️Biggest Expense : <span id="biggestExpense">Add Expense First</span></p>
+                <p class="side2">🔢Number of Expenses: <span id="numberExpense">Add Expense First</span></p>
+                <p class="side2">📉Income Used: <span id="incomeUsed">Add Income First</span></p>
+                <p class="side2">➗Average Expense: <span id="averageExpense">Add Expense First</span></p>
+            </div>
+            <div class="trans-div">
+                <form id="transactions-form" class="transactions-form-class">
+                    <span class="form-text">📝Description(Optional):</span> <input type="text" id="desc" placeholder="Description(Optional)" >
+                    <span class="form-text">💵Amount:</span> <input type="number" id="amount" placeholder="Amount" required>
+                    <span class="form-text">🗓️Date:</span> <input type="date" id="date" placeholder="date" required>
+                    <span class="form-text">🔄Transaction Type:</span>
+                    <select id="amountType" class="amountType-class"  required>
+                        <option value="" disabled selected>Select a Category</option>
+                        <option value="income" >💰Income</option>
+                        <option value="expense" >💸Expenses</option>
+                    </select>
+                    <span class="form-text">🏷️Category:</span>
+                    <select id="category" class="category-class" required>
+                        <option value="" disabled selected>Select a Category</option>
+                        <option value="food" >🍕Food</option>
+                        <option value="transport" >🚌Transport</option>
+                        <option value="shopping" >🛒Shopping</option>
+                        <option value="bills" >🧾Bills</option>
+                        <option value="health" >🚑Health</option>
+                        <option value="salary" >💼Salary</option>
+                        <option value="other" >❓Other</option>
+                    </select>
+
+                    <button id="submit-btn" class="submit-btn-class" type="submit">➕Add Transaction</button>
+                </form>
+            </div>
+            <div class="common2">
+                
+                <h4>🏦Why Should we manage our finances?<br></h4>
+                <br>
+                <p class="side">Managing your finances gives you control and peace of mind, helping you avoid debt and reach your goals. With smart planning, you can build financial security and confidently navigate unexpected challenges.</p>
+                <br>
+                <p class="side"><span class="highlight">"Do not save what is left after spending; instead spend what is left after saving."
+                — Warren Buffett</span></p>
+                
+            </div>
+        </div>
+    </section>
+    <section id="charts" class="charts-class">
+        <div class="graphs">
+            <pre>
+            <h4>📊Expenses by Category:</h4>
+            <canvas id="financeChart" width="500" height="500"></canvas>
+            </pre>
+        </div>
+        <div class="graphs2">
+            <pre>
+            <h4>📅Expenses by Date:</h4>
+            <canvas id="expenseChart" width="500" height="500"></canvas></pre>
+        </div>    
+    </section>
+    <section id="money">
+        <div class="money-div" id="transactions1">
+            <pre>
+            <h3> 💳Recent Transactions</h3>
+            <ul id="money-list"></ul></pre>
+        </div>
+    </section>
+    <footer> 
+        Created by <i class="fa-solid fa-desktop"></i><span class="highlight"><a href="https://www.instagram.com/dcode_nsut/?hl=en"> D'Code</a></span>
+    </footer>
+    <script src="script.js"></script>
+
+    
+</body>
+</html>
